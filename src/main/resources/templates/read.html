@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--<meta charset="UTF-8">-->
+    <title>Spring Assignment 1</title>
+</head>
+<body>
+
+
+   <table border="3px">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Comment</th>
+        </tr>
+       <tr th:each="advert : ${adverts}">
+           <td th:text="${advert.name}">Daniel Connolly</td>
+           <td th:text="${advert.description}">Selling a bicycle</td>
+           <td th:text="${advert.comment}">Good condition</td>
+           <td><a href="#" th:href="@{/delete/}+${advert.id}">Delete</a></td>
+       </tr>
+   </table>
+
+
+
+
+
+</body>
+</html>

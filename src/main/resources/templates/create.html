@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!--<meta charset="UTF-8">-->
+    <title>Spring Assignment 1</title>
 </head>
 <body>
-     <p>This is the create page</p>
+
+ <h1>This is the Create Page</h1>
+
+  <br>
+
+ <h3>An advert can be created on this page</h3>
+
+  <form action="#" th:action="@{/create}" th:object="${advert}" method="post">
+      <input type="hidden" th:field="*{id}"/>
+      <p>Name: </p> <input type="text" th:field="*{name}"/>
+      <p>Description: </p> <input type="text" th:field="*{description}"/>
+      <p>Comment: </p> <input type="text" th:field="*{comment}"/>
+
+      <p><input type="submit" value="Submit" /></p>
+  </form>
+
+
+
 </body>
 </html>
