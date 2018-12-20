@@ -51,6 +51,20 @@ public class AdvertController {
         return "redirect:/ad/read";
     }
 
+    @RequestMapping(value = "/update/{advert}", method = RequestMethod.GET)
+    public String update(Model model, @PathVariable Advert advert)
+    {
+        model.addAttribute("advert", advert);
+        return "update";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateSave(@ModelAttribute("advert") Advert advert)
+    {
+        advertService.save(advert);
+        return "redirect:/ad/read";
+    }
+
     @RequestMapping(value = "/delete/{advert}", method = RequestMethod.GET)
     @ResponseBody
     public String delete(@PathVariable Advert advert)

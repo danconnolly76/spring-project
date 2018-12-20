@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--<meta charset="UTF-8">-->
+    <title>Spring Assignment 1</title>
+</head>
+<body>
+
+<h1>Update page</h1>
+
+<br>
+
+<h3>An advert can be created on this page</h3>
+
+<form action="#" th:action="@{/ad/update}" th:object="${advert}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <p>Name: </p> <input type="text" th:field="*{name}"/>
+    <p>Description: </p> <input type="text" th:field="*{description}"/>
+    <p>Comment: </p> <input type="text" th:field="*{comment}"/>
+
+    <p><input type="submit" value="Update" /></p>
+</form>
+
+
+
+</body>
+</html>

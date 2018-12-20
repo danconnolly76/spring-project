@@ -12,11 +12,14 @@
             <th>Name</th>
             <th>Description</th>
             <th>Comment</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
        <tr th:each="advert : ${adverts}">
            <td th:text="${advert.name}">Daniel Connolly</td>
            <td th:text="${advert.description}">Selling a bicycle</td>
            <td th:text="${advert.comment}">Good condition</td>
+           <td><a href="#" th:href="@{/ad/update/}+${advert.id}">Update</a></td>
            <td><a href="#" th:href="@{/ad/delete/}+${advert.id}">Delete</a></td>
        </tr>
    </table>
@@ -25,6 +28,7 @@
        <ol>
            <li th:each="advert : ${adverts}">
                <span th:text="${advert.name}+' '+${advert.description}+' '+${advert.comment}"></span>
+               <a href="#" th:href="@{/ad/update/}+${advert.id}">Update</a>
                <a href="#" th:href="@{/ad/delete/}+${advert.id}">Delete</a>
            </li>
        </ol>
