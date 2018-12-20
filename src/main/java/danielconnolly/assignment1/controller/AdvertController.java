@@ -5,14 +5,12 @@ import danielconnolly.assignment1.service.AdvertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/ad")
 public class AdvertController {
 
     @Autowired
@@ -50,7 +48,20 @@ public class AdvertController {
     public String create(Model model, @ModelAttribute("advert") Advert advert)
     {
         advertService.save(advert);
-        return "redirect:/read";
+        return "redirect:/ad/read";
     }
+
+    @RequestMapping(value = "/delete/{advert}", method = RequestMethod.GET)
+    @ResponseBody
+    public String delete(@PathVariable Advert advert)
+    {
+        String value = advert.getName();
+
+        advertService.delete(advert);
+
+        return "Hello";
+    }
+
+
 
 }

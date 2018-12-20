@@ -12,8 +12,8 @@
 
  <h3>An advert can be created on this page</h3>
 
-  <form action="#" th:action="@{/create}" th:object="${advert}" method="post">
-      <input type="hidden" th:field="*{id}"/>
+  <form action="#" th:action="@{/ad/create}" th:object="${advert}" method="post">
+      <!--<input type="hidden" th:field="*{id}"/>-->
       <p>Name: </p> <input type="text" th:field="*{name}"/>
       <p>Description: </p> <input type="text" th:field="*{description}"/>
       <p>Comment: </p> <input type="text" th:field="*{comment}"/>
