@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/ad")
+@RequestMapping(value = "/advert")
 public class AdvertController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class AdvertController {
         List<Advert> adverts = advertService.findAll();
 
         model.addAttribute("adverts", adverts);
-        return "read";
+        return "advert/read";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -40,7 +40,7 @@ public class AdvertController {
         Advert advert = new Advert();
 
         model.addAttribute("advert", advert);
-        return "create";
+        return "advert/create";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -48,32 +48,31 @@ public class AdvertController {
     public String create(Model model, @ModelAttribute("advert") Advert advert)
     {
         advertService.save(advert);
-        return "redirect:/ad/read";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/update/{advert}", method = RequestMethod.GET)
     public String update(Model model, @PathVariable Advert advert)
     {
         model.addAttribute("advert", advert);
-        return "update";
+        return "advert/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateSave(@ModelAttribute("advert") Advert advert)
     {
         advertService.save(advert);
-        return "redirect:/ad/read";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/delete/{advert}", method = RequestMethod.GET)
-    @ResponseBody
     public String delete(@PathVariable Advert advert)
     {
         String value = advert.getName();
 
         advertService.delete(advert);
 
-        return "Hello";
+        return "redirect:/";
     }
 
 

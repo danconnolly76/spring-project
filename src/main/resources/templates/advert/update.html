@@ -12,7 +12,7 @@
 
 <h3>An advert can be created on this page</h3>
 
-<form action="#" th:action="@{/ad/update}" th:object="${advert}" method="post">
+<form action="#" th:action="@{/advert/update}" th:object="${advert}" method="post">
     <input type="hidden" th:field="*{id}"/>
     <p>Name: </p> <input type="text" th:field="*{name}"/>
     <p>Description: </p> <input type="text" th:field="*{description}"/>
