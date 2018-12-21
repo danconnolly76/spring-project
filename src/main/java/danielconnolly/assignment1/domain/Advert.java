@@ -2,21 +2,21 @@ package danielconnolly.assignment1.domain;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.*;
+
 
 @Entity
+@Table (name = "ads")
 public class Advert {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotEmpty
+    @Size(min=1, max=30)
     private String firstName;
 
     @NotEmpty
-
     private String lastName;
 
     @NotEmpty
@@ -73,8 +73,6 @@ public class Advert {
     public void setId(Integer id) {
         this.id = id;
     }
-
-
 
 
 }

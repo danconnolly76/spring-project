@@ -18,7 +18,6 @@ public class AdvertController {
     @Autowired
     AdvertService advertService;
 
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index()
     {
@@ -55,7 +54,7 @@ public class AdvertController {
             return "advert/create";
         }
             advertService.save(advert);
-            return "redirect:/";
+            return "redirect:/advert/read";
 
     }
 
@@ -70,16 +69,13 @@ public class AdvertController {
     public String updateSave(@ModelAttribute("advert") Advert advert)
     {
         advertService.save(advert);
-        return "redirect:/";
+        return "redirect:/advert/read";
     }
 
     @RequestMapping(value = "/delete/{advert}", method = RequestMethod.GET)
     public String delete(@PathVariable Advert advert)
     {
-        String value = advert.getFirstName();
-
         advertService.delete(advert);
-
         return "redirect:/";
     }
 
