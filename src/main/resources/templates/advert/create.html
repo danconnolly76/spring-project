@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--<meta charset="UTF-8">-->
-    <title>Spring Assignment 1</title>
+    <th:block th:include="includes/header :: headlinks"></th:block>
 </head>
 <body>
-
- <h1>This is the Create Page</h1>
-
+ <div th:include="includes/header :: head"></div>
+   <h1>This is the Create Page</h1>
   <br>
 
  <h3>An advert can be created on this page</h3>
 
   <form action="#" th:action="@{/advert/create}" th:object="${advert}" method="post">
-      <!--<input type="hidden" th:field="*{id}"/>-->
-      <p>Name: </p> <input type="text" th:field="*{name}"/>
+      <p>First name: </p> <input type="text" th:field="*{firstName}"/>
+      <p>Last name: </p> <input type="text" th:field="*{lastName}"/>
       <p>Description: </p> <input type="text" th:field="*{description}"/>
       <p>Comment: </p> <input type="text" th:field="*{comment}"/>
 
       <p><input type="submit" value="Submit" /></p>
   </form>
 
-
+ <div th:if="${message!=null}"></div>
+  <span th:text="${message}" />
 
 </body>
 </html>

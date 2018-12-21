@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--<meta charset="UTF-8">-->
-    <title>Spring Assignment 1</title>
+    <th:block th:include="includes/header :: headlinks"></th:block>
 </head>
 <body>
-
+<div th:include="includes/header :: head"></div>
 
    <table border="3px">
         <tr>
-            <th>Name</th>
+            <th>First name</th>
+            <th>Last name</th>
             <th>Description</th>
             <th>Comment</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
        <tr th:each="advert : ${adverts}">
-           <td th:text="${advert.name}">Daniel Connolly</td>
+           <td th:text="${advert.firstName}">Daniel</td>
+           <td th:text="${advert.lastName}">Daniel</td>
            <td th:text="${advert.description}">Selling a bicycle</td>
            <td th:text="${advert.comment}">Good condition</td>
            <td><a href="#" th:href="@{/advert/update/}+${advert.id}">Update</a></td>

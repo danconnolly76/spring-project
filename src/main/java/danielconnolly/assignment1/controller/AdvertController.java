@@ -5,8 +5,10 @@ import danielconnolly.assignment1.service.AdvertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -18,7 +20,6 @@ public class AdvertController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    //@ResponseBody
     public String index()
     {
 
@@ -44,11 +45,18 @@ public class AdvertController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    //@ResponseBody
-    public String create(Model model, @ModelAttribute("advert") Advert advert)
+    public String create(Model model, @Valid @ModelAttribute("advert") Advert advert,
+                         BindingResult bindingResult)
     {
-        advertService.save(advert);
-        return "redirect:/";
+        if(bindingResult.hasErrors())
+        {
+            model.addAttribute("advert", advert);
+            model.addAttribute("message", "Must enter text in all text boxes");
+            return "advert/create";
+        }
+            advertService.save(advert);
+            return "redirect:/";
+
     }
 
     @RequestMapping(value = "/update/{advert}", method = RequestMethod.GET)
@@ -68,7 +76,7 @@ public class AdvertController {
     @RequestMapping(value = "/delete/{advert}", method = RequestMethod.GET)
     public String delete(@PathVariable Advert advert)
     {
-        String value = advert.getName();
+        String value = advert.getFirstName();
 
         advertService.delete(advert);
 
