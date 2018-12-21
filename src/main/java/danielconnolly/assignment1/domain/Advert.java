@@ -1,11 +1,10 @@
 package danielconnolly.assignment1.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Advert {
@@ -74,6 +73,8 @@ public class Advert {
     public void setId(Integer id) {
         this.id = id;
     }
+
+
 
 
 }

@@ -8,16 +8,35 @@
    <h1>This is the Create Page</h1>
   <br>
 
- <h3>An advert can be created on this page</h3>
 
-  <form action="#" th:action="@{/advert/create}" th:object="${advert}" method="post">
-      <p>First name: </p> <input type="text" th:field="*{firstName}"/>
-      <p>Last name: </p> <input type="text" th:field="*{lastName}"/>
-      <p>Description: </p> <input type="text" th:field="*{description}"/>
-      <p>Comment: </p> <input type="text" th:field="*{comment}"/>
 
-      <p><input type="submit" value="Submit" /></p>
-  </form>
+ <div class="container">
+     <div class="row">
+         <div class="col-md-8 col-md-offset-2">
+             <h3>An advert can be created on this page</h3>
+             <br>
+          <form action="#" th:action="@{/advert/create}" th:object="${advert}" method="post">
+              <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Firstname" th:field="*{firstName}"/>
+              </div>
+               <br>
+              <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Lastname" th:field="*{lastName}"/>
+              </div>
+               <br>
+              <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Description" th:field="*{description}"/>
+              </div>
+               <br>
+              <div class="form-group">
+                  <textarea class="form-control" placeholder="Comment" th:field="*{comment}"/>
+              </div>
+              <br> </br>
+              <p><input type="submit" value="Submit" /></p>
+          </form>
+        </div>
+     </div><!--End of row-->
+ </div><!--End of container-->
 
  <div th:if="${message!=null}"></div>
   <span th:text="${message}" />

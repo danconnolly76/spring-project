@@ -6,23 +6,31 @@
 <body>
 <div th:include="includes/header :: head"></div>
 
-   <table border="3px">
-        <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Description</th>
-            <th>Comment</th>
-            <th>Update</th>
-            <th>Delete</th>
-        </tr>
-       <tr th:each="advert : ${adverts}">
-           <td th:text="${advert.firstName}">Daniel</td>
-           <td th:text="${advert.lastName}">Daniel</td>
-           <td th:text="${advert.description}">Selling a bicycle</td>
-           <td th:text="${advert.comment}">Good condition</td>
-           <td><a href="#" th:href="@{/advert/update/}+${advert.id}">Update</a></td>
-           <td><a href="#" th:href="@{/advert/delete/}+${advert.id}">Delete</a></td>
-       </tr>
-   </table>
-</body>
+  <h3>This page displays all adverts</h3>
+
+   <p>If there are none showing on the page this is because there are none in the system.</p>
+
+      <tr th:each="advert : ${adverts}">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                      <div class="panel panel-default">
+                          <div class="panel-heading">
+                              <td th:text="${advert.firstName}"></td>
+                              <td th:text="${advert.lastName}"></td>
+                          </div>
+                          <div class="panel-body">
+                              <td th:text="${advert.description}"></td>
+                          </div>
+                          <div class="panel-body">
+                             <td th:text="${advert.comment}"></td>
+                          </div>
+                        <td><a href="#" th:href="@{/advert/update/}+${advert.id}" class="btn btn-info">Update</a></td>
+                        <td><a href="#" th:href="@{/advert/delete/}+${advert.id}" class="btn btn-warning">Delete</a></td>
+                  </div><!--panel panel-default-->
+              </div><!--End ofcol-md-8 col-md-offset-2-->
+           </div><!--End of row-->
+        </div><!--End of container-->
+      </tr>
+ </body>
 </html>
