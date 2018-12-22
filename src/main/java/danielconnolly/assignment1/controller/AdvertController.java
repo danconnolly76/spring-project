@@ -18,12 +18,6 @@ public class AdvertController {
     @Autowired
     AdvertService advertService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index()
-    {
-
-        return "index";
-    }
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public String viewAdvert(Model model)

@@ -6,7 +6,7 @@ import javax.validation.constraints.*;
 
 
 @Entity
-@Table (name = "ads")
+@Table(name = "ads")
 public class Advert {
 
     @Id
