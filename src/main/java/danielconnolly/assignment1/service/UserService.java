@@ -1,5 +1,6 @@
 package danielconnolly.assignment1.service;
 
+import danielconnolly.assignment1.domain.LoginUser;
 import danielconnolly.assignment1.domain.User;
 import danielconnolly.assignment1.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +21,15 @@ public class UserService {
     public List<User> findAllUsers(){
         return userRepository.findAll();
     }
+
+    public void delete(User user){
+        userRepository.delete(user);
+    }
+
+    public List<User> validateUser(LoginUser user){
+        return userRepository.findByFNameAndPassword(user.getAccountname(), user.getPassword());
+    }
+
+
+
 }
