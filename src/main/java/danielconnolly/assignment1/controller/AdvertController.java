@@ -22,7 +22,7 @@ public class AdvertController {
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public String viewAdvert(Model model)
     {
-        List<Advert> adverts = advertService.findAll();
+        List<Advert> adverts = advertService.findAllAdverts();
 
         model.addAttribute("adverts", adverts);
         return "advert/read";
@@ -47,7 +47,7 @@ public class AdvertController {
             model.addAttribute("message", "Must enter text in all text boxes");
             return "advert/create";
         }
-            advertService.save(advert);
+            advertService.saveAdverts(advert);
             return "redirect:/advert/read";
 
     }
@@ -62,14 +62,14 @@ public class AdvertController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateSave(@ModelAttribute("advert") Advert advert)
     {
-        advertService.save(advert);
+        advertService.saveAdverts(advert);
         return "redirect:/advert/read";
     }
 
     @RequestMapping(value = "/delete/{advert}", method = RequestMethod.GET)
     public String delete(@PathVariable Advert advert)
     {
-        advertService.delete(advert);
+        advertService.deleteAllAdverts(advert);
         return "redirect:/";
     }
 

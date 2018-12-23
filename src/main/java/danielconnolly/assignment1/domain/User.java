@@ -2,30 +2,34 @@ package danielconnolly.assignment1.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "users")
 public class User {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Integer iduser;
+    @NotEmpty
     private String fName;
-
+    @NotEmpty
     private String lName;
-
+    @NotEmpty
+    @Column(unique = true)
     private String password;
 
     public User() {
 
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIduser() {
+        return iduser;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIduser(Integer iduser) {
+        this.iduser = iduser;
     }
 
     public String getfName() {

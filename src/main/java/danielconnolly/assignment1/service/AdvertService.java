@@ -13,19 +13,19 @@ public class AdvertService {
     @Autowired
     AdvertRepository advertRepository;
 
-    public Advert save(Advert advert)
+    public Advert saveAdverts(Advert advert)
     {
 
         return advertRepository.save(advert);
     }
 
-    public List<Advert> findAll()
+    public List<Advert> findAllAdverts()
     {
 
         return advertRepository.findAll();
     }
 
-    public void delete(Advert advert)
+    public void deleteAllAdverts(Advert advert)
     {
         advertRepository.delete(advert);
     }

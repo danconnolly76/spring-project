@@ -8,12 +8,14 @@
 
 <body>
 
+ <h3>Registration</h3>
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h3>An advert can be created on this page</h3>
                 <br>
                 <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
+                    <!--<input type="hidden" th:field="*{iduser}"/>-->
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Firstname" th:field="*{fName}"/>
                     </div>
@@ -30,7 +32,8 @@
             </div>
         </div><!--End of row-->
     </div><!--End of container-->
-
-
+   <div th:if="${error!=null}">
+       <span th:text="${error}"></span>
+   </div>
 </body>
 </html>
