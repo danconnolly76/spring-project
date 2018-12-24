@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -15,26 +16,39 @@ import java.util.List;
 @RequestMapping(value = "/advert")
 public class AdvertController {
 
+    private static final String READPAGE = "advert/read";
+    private static final String REDIRECTREADPAGE = "redirect:/advert/read";
+    private static final String CREATEPAGE = "advert/create";
+    private static final String UPDATEPAGE = "advert/update";
+    private static final String LOGINPAGEREDIRECT = "redirect:/login";
+    private List<Advert> adverts;
+
     @Autowired
     AdvertService advertService;
 
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
-    public String viewAdvert(Model model)
+    public String viewAdvert(Model model, HttpSession httpSession)
     {
-        List<Advert> adverts = advertService.findAllAdverts();
+        if(httpSession.getAttribute("login")==null)
+        {
+            return LOGINPAGEREDIRECT;
+        }
+        adverts = advertService.findAllAdverts();
 
         model.addAttribute("adverts", adverts);
-        return "advert/read";
+        return READPAGE;
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String viewCreate(Model model)
+    public String viewCreate(Model model, HttpSession httpSession)
     {
-        Advert advert = new Advert();
-
-        model.addAttribute("advert", advert);
-        return "advert/create";
+        if(httpSession.getAttribute("login")==null)
+        {
+            return LOGINPAGEREDIRECT;
+        }
+        model.addAttribute("advert",new Advert());
+        return CREATEPAGE;
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -45,33 +59,36 @@ public class AdvertController {
         {
             model.addAttribute("advert", advert);
             model.addAttribute("message", "Must enter text in all text boxes");
-            return "advert/create";
+            return CREATEPAGE;
         }
-            advertService.saveAdverts(advert);
-            return "redirect:/advert/read";
+            this.advertService.saveAdverts(advert);
+            return REDIRECTREADPAGE;
 
     }
 
     @RequestMapping(value = "/update/{advert}", method = RequestMethod.GET)
     public String update(Model model, @PathVariable Advert advert)
     {
+
         model.addAttribute("advert", advert);
-        return "advert/update";
+        return UPDATEPAGE;
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateSave(@ModelAttribute("advert") Advert advert)
     {
-        advertService.saveAdverts(advert);
-        return "redirect:/advert/read";
+        this.advertService.saveAdverts(advert);
+        return REDIRECTREADPAGE;
     }
 
     @RequestMapping(value = "/delete/{advert}", method = RequestMethod.GET)
-    public String delete(@PathVariable Advert advert)
+    public String delete(Model model, @PathVariable Advert advert)
     {
-        advertService.deleteAllAdverts(advert);
-        return "redirect:/";
+        this.advertService.deleteAllAdverts(advert);
+        return REDIRECTREADPAGE;
     }
+
+
 
 
 

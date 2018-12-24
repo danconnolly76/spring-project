@@ -9,64 +9,92 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/user")
 public class UserController {
+
+    private List<User> users;
+    private static final String INDEXPAGE = "index";
+    private static final String INDEXPAGEREDIRECT = "redirect:/";
+    private static final String LOGINPAGEREDIRECT = "redirect:/login";
+    private static final String LOGINPAGE = "/login";
 
     @Autowired
     UserService userService;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index(Model model, HttpSession httpSession)
+    {
+        if(httpSession.getAttribute("login")==null)
+        {
+            return LOGINPAGEREDIRECT;
+        }
+        users = userService.findUsers();
+        model.addAttribute("users", users);
+
+        return INDEXPAGE;
+    }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerUser(Model model){
 
         User user = new User();
         model.addAttribute("user", user);
-        return "user/register";
+        return "/register";
+
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutUser(Model model, HttpSession httpSession)
+    {
+        httpSession.removeAttribute("login");
+        return LOGINPAGEREDIRECT;
 
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    //@ResponseBody
     public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             model.addAttribute("user", user);
             model.addAttribute("error", "Enter information into all text boxes");
-            return "user/register";
+            return "/register";
         }
         userService.saveUser(user);
-        return "redirect:/";
+        return INDEXPAGEREDIRECT;
 
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginUser(Model model){
 
-        LoginUser user = new LoginUser();
-        model.addAttribute("user", user);
-        return "user/login";
+        model.addAttribute("user", new LoginUser());
+        return LOGINPAGE;
 
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginValdation(Model model, @Valid @ModelAttribute("user") LoginUser user, BindingResult bindingResult){
+    public String loginValdation(Model model, @Valid @ModelAttribute("user") LoginUser user, BindingResult bindingResult,
+                                 HttpSession httpSession){
 
         if(bindingResult.hasErrors()){
             model.addAttribute("user", user);
             model.addAttribute("error", "Enter information into all text boxes");
-            return "user/login";
+            return LOGINPAGE;
         }
 
         if(userService.validateUser(user)==null || userService.validateUser(user).size()==0)
         {
             model.addAttribute("user", user);
             model.addAttribute("error", "Enter in correct username and password");
-            return "user/login";
+            return LOGINPAGE;
         }
-        return "redirect:/";
+
+        httpSession.setAttribute("login", true);
+        return INDEXPAGEREDIRECT;
     }
 
     @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET)
@@ -75,7 +103,7 @@ public class UserController {
     {
         userService.delete(user);
 
-        return "redirect:/";
+        return INDEXPAGEREDIRECT;
     }
 
 }
