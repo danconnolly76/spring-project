@@ -4,10 +4,21 @@
     <th:block th:include="includes/header :: headlinks"></th:block>
     <title>Spring Assignment 1</title>
 </head>
-
 <body>
-
-<h3>Login</h3>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Spring App</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/register}">Register</a></li>
+        </ul>
+    </div><!--End of container-fluid -->
+</nav><!--End of nav-->
+<div class="page-header">
+    <h1>Login Page</h1>
+    <small>If you have not registered select the link above.</small>
+</div><!--End of page-header-->
 
 <div class="container">
     <div class="row">
