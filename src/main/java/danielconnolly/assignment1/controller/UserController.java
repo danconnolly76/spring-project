@@ -82,7 +82,7 @@ public class UserController {
 
         if(bindingResult.hasErrors()){
             model.addAttribute("user", user);
-            model.addAttribute("error", "Enter information into all text boxes");
+            model.addAttribute("error", "Please enter login details");
             return LOGINPAGE;
         }
 

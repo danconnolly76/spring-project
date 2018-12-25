@@ -5,12 +5,23 @@
 </head>
 <body>
 <div th:include="includes/header :: head"></div>
-
-  <h3>This page displays all adverts</h3>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="page-header">
+            <h1>Display Page</h1>
+        </div><!--End of page-header -->
+    </div><!--End of col-md-8 col-md-offset-2-->
+</div><!--End of row-->
 
 
    <div th:if="${adverts.isEmpty()}">
-       <p>No adverts.</p>
+       <div class="row">
+           <div class="col-md-8 col-md-offset-2">
+               <div class="page-header">
+                   <h3>There are currently no advert</h3>
+               </div><!--End of page-header -->
+           </div><!--End of col-md-8 col-md-offset-2-->
+       </div><!--End of row-->
    </div>
     <div th:if="${!adverts.isEmpty()}">
       <tr th:each="advert : ${adverts}">

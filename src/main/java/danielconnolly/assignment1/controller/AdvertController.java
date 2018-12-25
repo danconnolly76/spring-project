@@ -58,7 +58,7 @@ public class AdvertController {
         if(bindingResult.hasErrors())
         {
             model.addAttribute("advert", advert);
-            model.addAttribute("message", "Must enter text in all text boxes");
+            model.addAttribute("error", "Must enter text in all text boxes");
             return CREATEPAGE;
         }
             this.advertService.saveAdverts(advert);

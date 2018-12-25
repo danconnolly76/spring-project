@@ -15,10 +15,14 @@
         </ul>
     </div><!--End of container-fluid -->
 </nav><!--End of nav-->
-<div class="page-header">
-    <h1>Login Page</h1>
-    <small>If you have not registered select the link above.</small>
-</div><!--End of page-header-->
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="page-header">
+            <h1>Login Page</h1>
+            <small>Enter in the correct details below</small>
+        </div><!--End of page-header -->
+    </div><!--End of col-md-8 col-md-offset-2-->
+</div><!--End of row-->
 
 <div class="container">
     <div class="row">
@@ -37,8 +41,13 @@
         </div><!--End of col-md-8-->
     </div><!--End of row-->
 </div><!--End of container-->
-<div th:if="${error!=null}">
-    <span th:text="${error}"></span>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div th:if="${error!=null}"></div>
+            <h1><span th:text="${error}" /></h1>
+        </div>
+    </div>
+</div><!--End of container-->
 </body>
 </html>
