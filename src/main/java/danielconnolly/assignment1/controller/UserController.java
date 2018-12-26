@@ -40,11 +40,8 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerUser(Model model){
-
-        User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("user",new User());
         return "/register";
-
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -86,23 +83,23 @@ public class UserController {
             return LOGINPAGE;
         }
 
-        if(userService.validateUser(user)==null || userService.validateUser(user).size()==0)
+        if(userService.validateUser(user)!=null || userService.validateUser(user).size()>0)
         {
-            model.addAttribute("user", user);
-            model.addAttribute("error", "Enter in correct username and password");
-            return LOGINPAGE;
-        }
+            httpSession.setAttribute("login", true);
+            return INDEXPAGEREDIRECT;
 
-        httpSession.setAttribute("login", true);
-        return INDEXPAGEREDIRECT;
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("error", "Enter in correct username and password");
+        return LOGINPAGE;
+
+
     }
 
     @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET)
-    //@ResponseBody
     public String deleteUser(@PathVariable User user)
     {
         userService.delete(user);
-
         return INDEXPAGEREDIRECT;
     }
 
