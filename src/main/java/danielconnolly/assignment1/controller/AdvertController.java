@@ -29,12 +29,8 @@ public class AdvertController {
 
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
-    public String viewAdvert(Model model, HttpSession httpSession)
+    public String viewAdvert(Model model)
     {
-        if(httpSession.getAttribute("login")==null)
-        {
-            return LOGINPAGEREDIRECT;
-        }
         adverts = advertService.findAllAdverts();
 
         model.addAttribute("adverts", adverts);
@@ -42,12 +38,8 @@ public class AdvertController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String viewCreate(Model model, HttpSession httpSession)
+    public String viewCreate(Model model)
     {
-        if(httpSession.getAttribute("login")==null)
-        {
-            return LOGINPAGEREDIRECT;
-        }
         model.addAttribute("advert",new Advert());
         return CREATEPAGE;
     }
