@@ -4,18 +4,20 @@ import javax.validation.constraints.NotEmpty;
 
 public class LoginUser {
 
+
+
     @NotEmpty
-    private String accountname;
+    private String username;
 
     @NotEmpty
     private String password;
 
-    public String getAccountname() {
-        return accountname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccountname(String accountname) {
-        this.accountname = accountname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

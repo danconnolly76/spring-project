@@ -83,15 +83,15 @@ public class UserController {
             return LOGINPAGE;
         }
 
-        if(userService.validateUser(user)!=null || userService.validateUser(user).size()>0)
+        if(userService.validateUser(user)==null || userService.validateUser(user).size()==0)
         {
-            httpSession.setAttribute("login", true);
-            return INDEXPAGEREDIRECT;
+            model.addAttribute("user", user);
+            model.addAttribute("error", "Please enter login details");
+            return LOGINPAGE;
 
         }
-        model.addAttribute("user", user);
-        model.addAttribute("error", "Enter in correct username and password");
-        return LOGINPAGE;
+
+        return INDEXPAGE;
 
 
     }

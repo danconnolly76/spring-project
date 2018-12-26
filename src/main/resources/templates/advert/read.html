@@ -36,10 +36,10 @@
                               <td th:text="${advert.lastName}"></td>
                           </div>
                           <div class="panel-body">
-                              <td th:text="${advert.description}"></td>
+                           Description: <td th:text="${advert.description}"></td>
                           </div>
                           <div class="panel-body">
-                             <td th:text="${advert.comment}"></td>
+                             <p>Comment:</p><td th:text="${advert.comment}"></td>
                           </div>
                         <td><a href="#" th:href="@{/advert/update/}+${advert.id}" class="btn btn-info">Update</a></td>
                         <td><a href="#" th:href="@{/advert/delete/}+${advert.id}" class="btn btn-warning">Delete</a></td>

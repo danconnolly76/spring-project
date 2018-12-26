@@ -62,9 +62,9 @@ public class AdvertController {
     @RequestMapping(value ="/search", method = RequestMethod.POST)
     public String search(Model model, @ModelAttribute("searchAd") SearchAd searchAd)
     {
-        adverts = advertService.searchAdverts(searchAd);
+
         model.addAttribute("searchAd", searchAd);
-        model.addAttribute("adverts", adverts);
+        model.addAttribute("adverts", this.adverts = advertService.searchAdverts(searchAd));
         return "advert/search";
     }
 

@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public List<User> validateUser(LoginUser user){
-        return userRepository.findByFNameAndPassword(user.getAccountname(), user.getPassword());
+        return userRepository.findByFNameAndPassword(user.getUsername(), user.getPassword());
     }
 
 
