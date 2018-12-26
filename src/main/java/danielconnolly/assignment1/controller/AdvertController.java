@@ -1,6 +1,7 @@
 package danielconnolly.assignment1.controller;
 
 import danielconnolly.assignment1.domain.Advert;
+import danielconnolly.assignment1.domain.SearchAd;
 import danielconnolly.assignment1.service.AdvertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,23 @@ public class AdvertController {
         model.addAttribute("advert",new Advert());
         return CREATEPAGE;
     }
+
+    @RequestMapping(value ="/search", method = RequestMethod.GET)
+    public String searchAd(Model model)
+    {
+        model.addAttribute("searchAd", new SearchAd());
+        return "advert/search";
+    }
+
+    @RequestMapping(value ="/search", method = RequestMethod.POST)
+    public String search(Model model, @ModelAttribute("searchAd") SearchAd searchAd)
+    {
+        adverts = advertService.searchAdverts(searchAd);
+        model.addAttribute("searchAd", searchAd);
+        model.addAttribute("adverts", adverts);
+        return "advert/search";
+    }
+
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Model model, @Valid @ModelAttribute("advert") Advert advert,

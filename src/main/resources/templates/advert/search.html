@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="includes/header :: headlinks"></th:block>
+</head>
+<body>
+<div th:include="includes/header :: head"></div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="page-header">
+            <h1>Search Page</h1>
+        </div><!--End of page-header -->
+    </div><!--End of col-md-8 col-md-offset-2-->
+</div><!--End of row-->
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <br>
+        <form action="#" th:action="@{/advert/search}" th:object="${searchAd}" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Description" th:field="*{description}"/>
+            </div>
+            <br>
+            <p><input type="submit" class="btn btn-lg btn-primary btn-block" value="Search" /></p>
+        </form>
+    </div><!--End of col-md-8 col-md-offset-2-->
+</div><!--End of row-->
+</div>
+
+ <div>
+         <tr th:each="ads : ${adverts}">
+             <div class="container">
+                 <div class="row">
+                     <div class="col-md-8 col-md-offset-2">
+                         <div class="panel panel-default">
+                             <div class="panel-heading">
+                                 <td th:text="${ads.firstName}"></td>
+                                 <td th:text="${ads.lastName}"></td>
+                             </div>
+                             <div class="panel-body">
+                                 <td th:text="${ads.description}"></td>
+                             </div>
+                             <div class="panel-body">
+                                 <td th:text="${ads.comment}"></td>
+                             </div>
+                         </div><!--End panel panel-default-->
+                     </div><!--End ofcol-md-8 col-md-offset-2-->
+                 </div><!--End of row-->
+             </div><!--End of container-->
+       </div>
+
+</body>
+</html>

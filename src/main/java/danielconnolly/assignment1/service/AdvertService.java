@@ -2,6 +2,7 @@ package danielconnolly.assignment1.service;
 
 import danielconnolly.assignment1.domain.Advert;
 import danielconnolly.assignment1.domain.AdvertRepository;
+import danielconnolly.assignment1.domain.SearchAd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,4 +30,12 @@ public class AdvertService {
     {
         advertRepository.delete(advert);
     }
+
+    public List<Advert> searchAdverts(SearchAd ads)
+    {
+        return advertRepository.searchAdverts(ads.getDescription());
+    }
 }
+
+
+

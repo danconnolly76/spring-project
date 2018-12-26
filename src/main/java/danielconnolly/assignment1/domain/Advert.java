@@ -17,6 +17,7 @@ public class Advert {
     private String firstName;
 
     @NotEmpty
+    @Size(min=1, max=60)
     private String lastName;
 
     @NotEmpty
