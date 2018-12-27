@@ -13,6 +13,12 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Created by Daniel Connolly U1457227
+ *
+ * This is a controller class for adverts contained in the web app
+ */
+
 @Controller
 @RequestMapping(value = "/advert")
 public class AdvertController {
@@ -22,11 +28,20 @@ public class AdvertController {
     private static final String CREATEPAGE = "advert/create";
     private static final String UPDATEPAGE = "advert/update";
     private static final String LOGINPAGEREDIRECT = "redirect:/login";
+    private static final String SEARCHPAGE = "advert/search";
     private List<Advert> adverts;
 
     @Autowired
     AdvertService advertService;
 
+
+    /**
+     * This method gets all adverts by calling a method from the advertservice class
+     * these are displayed to screen
+     * @param model
+     * @param httpSession
+     * @return read page or login page
+     */
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public String viewAdvert(Model model, HttpSession httpSession)
@@ -41,6 +56,13 @@ public class AdvertController {
         return READPAGE;
     }
 
+    /**
+     * This method retrieves an advert object to create an advert
+     * @param model
+     * @param httpSession
+     * @return create page or login page
+     */
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String viewCreate(Model model, HttpSession httpSession)
     {
@@ -52,23 +74,41 @@ public class AdvertController {
         return CREATEPAGE;
     }
 
+    /**
+     * This method creates an instance of the SearchAd class
+     * to search for an advert via its description
+     * @param model
+     * @return search page
+     */
     @RequestMapping(value ="/search", method = RequestMethod.GET)
     public String searchAd(Model model)
     {
         model.addAttribute("searchAd", new SearchAd());
-        return "advert/search";
+        return SEARCHPAGE;
     }
 
+    /**
+     * Posts results of search query
+     * @param model
+     * @param searchAd
+     * @return search page
+     */
     @RequestMapping(value ="/search", method = RequestMethod.POST)
     public String search(Model model, @ModelAttribute("searchAd") SearchAd searchAd)
     {
         adverts = advertService.searchAdverts(searchAd);
         model.addAttribute("searchAd", searchAd);
         model.addAttribute("adverts", adverts);
-        return "advert/search";
+        return SEARCHPAGE;
     }
 
-
+    /**
+     * If advert contains no errors advert is saved and displayed on screen
+     * @param model
+     * @param advert
+     * @param bindingResult
+     * @return create page or read page
+     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Model model, @Valid @ModelAttribute("advert") Advert advert,
                          BindingResult bindingResult)
@@ -84,6 +124,12 @@ public class AdvertController {
 
     }
 
+    /**
+     * Allows for a advert to be updated
+     * @param model
+     * @param advert
+     * @return update page
+     */
     @RequestMapping(value = "/update/{advert}", method = RequestMethod.GET)
     public String update(Model model, @PathVariable Advert advert)
     {
@@ -92,6 +138,12 @@ public class AdvertController {
         return UPDATEPAGE;
     }
 
+    /**
+     * Saves a advert
+     * @param advert
+     * @return redirect to read page
+     */
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateSave(@ModelAttribute("advert") Advert advert)
     {
@@ -99,6 +151,12 @@ public class AdvertController {
         return REDIRECTREADPAGE;
     }
 
+    /**
+     * Allows for adverts to be deleted
+     * @param model
+     * @param advert
+     * @return redirect read page
+     */
     @RequestMapping(value = "/delete/{advert}", method = RequestMethod.GET)
     public String delete(Model model, @PathVariable Advert advert)
     {

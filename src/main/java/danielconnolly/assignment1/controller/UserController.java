@@ -13,6 +13,12 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Created by Daniel Connolly U1457227
+ *
+ * This is a controller class so user can register, login and log out
+ */
+
 @Controller
 public class UserController {
 
@@ -21,10 +27,17 @@ public class UserController {
     private static final String INDEXPAGEREDIRECT = "redirect:/";
     private static final String LOGINPAGEREDIRECT = "redirect:/login";
     private static final String LOGINPAGE = "/login";
+    private static final String REGISTER = "/register";
 
     @Autowired
     UserService userService;
 
+    /**
+     * This method access the home page
+     * @param model
+     * @param httpSession
+     * @return login page and index page
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession httpSession)
     {
@@ -38,12 +51,23 @@ public class UserController {
         return INDEXPAGE;
     }
 
+    /**
+     * This method creates a user
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerUser(Model model){
         model.addAttribute("user",new User());
-        return "/register";
+        return REGISTER;
     }
 
+    /**
+     * This method logs out a user
+     * @param model
+     * @param httpSession
+     * @return
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutUser(Model model, HttpSession httpSession)
     {
@@ -52,19 +76,30 @@ public class UserController {
 
     }
 
+    /**
+     * This method allows for a user to register if any errors message is displayed
+     * @param model
+     * @param user
+     * @param bindingResult
+     * @return register page index page
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             model.addAttribute("user", user);
             model.addAttribute("error", "Enter information into all text boxes");
-            return "/register";
+            return REGISTER;
         }
         userService.saveUser(user);
         return INDEXPAGEREDIRECT;
-
     }
 
+    /**
+     * Creates an instance of the loginUser class
+     * @param model
+     * @return login page
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginUser(Model model){
 
@@ -73,6 +108,15 @@ public class UserController {
 
     }
 
+    /**
+     * This method checks to see if errors have been entered if some have return to login page
+     * if login true returns login page else displays error message
+     * @param model
+     * @param user
+     * @param bindingResult
+     * @param httpSession
+     * @return login page and index page
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginValdation(Model model, @Valid @ModelAttribute("user") LoginUser user, BindingResult bindingResult,
                                  HttpSession httpSession){
@@ -88,12 +132,14 @@ public class UserController {
             httpSession.setAttribute("login", true);
             return INDEXPAGEREDIRECT;
 
+        } else {
+            model.addAttribute("user", user);
+            model.addAttribute("error", "Enter in correct username and password");
         }
-        model.addAttribute("user", user);
-        model.addAttribute("error", "Enter in correct username and password");
         return LOGINPAGE;
     }
 
+    //Needs removing before deadline
     @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable User user)
     {
