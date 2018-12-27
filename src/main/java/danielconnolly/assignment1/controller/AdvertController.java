@@ -29,8 +29,12 @@ public class AdvertController {
 
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
-    public String viewAdvert(Model model)
+    public String viewAdvert(Model model, HttpSession httpSession)
     {
+        if(httpSession.getAttribute("login")==null)
+        {
+            return LOGINPAGEREDIRECT;
+        }
         adverts = advertService.findAllAdverts();
 
         model.addAttribute("adverts", adverts);
@@ -38,8 +42,12 @@ public class AdvertController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String viewCreate(Model model)
+    public String viewCreate(Model model, HttpSession httpSession)
     {
+        if(httpSession.getAttribute("login")==null)
+        {
+            return LOGINPAGEREDIRECT;
+        }
         model.addAttribute("advert",new Advert());
         return CREATEPAGE;
     }
@@ -54,9 +62,9 @@ public class AdvertController {
     @RequestMapping(value ="/search", method = RequestMethod.POST)
     public String search(Model model, @ModelAttribute("searchAd") SearchAd searchAd)
     {
-
+        adverts = advertService.searchAdverts(searchAd);
         model.addAttribute("searchAd", searchAd);
-        model.addAttribute("adverts", this.adverts = advertService.searchAdverts(searchAd));
+        model.addAttribute("adverts", adverts);
         return "advert/search";
     }
 
@@ -71,8 +79,8 @@ public class AdvertController {
             model.addAttribute("error", "Must enter text in all text boxes");
             return CREATEPAGE;
         }
-            this.advertService.saveAdverts(advert);
-            return REDIRECTREADPAGE;
+        this.advertService.saveAdverts(advert);
+        return REDIRECTREADPAGE;
 
     }
 
@@ -97,9 +105,6 @@ public class AdvertController {
         this.advertService.deleteAllAdverts(advert);
         return REDIRECTREADPAGE;
     }
-
-
-
 
 
 }

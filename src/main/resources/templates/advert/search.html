@@ -26,26 +26,27 @@
 </div><!--End of row-->
 </div>
 
- <div>
-         <tr th:each="ads : ${adverts}">
-             <div class="container">
-                 <div class="row">
-                     <div class="col-md-8 col-md-offset-2">
-                         <div class="panel panel-default">
-                             <div class="panel-heading">
-                                 <td th:text="${ads.firstName}"></td>
-                                 <td th:text="${ads.lastName}"></td>
-                             </div>
-                             <div class="panel-body">
-                              Description: <td th:text="${ads.description}"></td>
-                             </div>
-                             <div class="panel-body">
-                               Comment: <td th:text="${ads.comment}"></td>
-                             </div>
-                         </div><!--End panel panel-default-->
-                     </div><!--End ofcol-md-8 col-md-offset-2-->
-                 </div><!--End of row-->
-             </div><!--End of container-->
-       </div>
+<div>
+    <tr th:each="ads : ${adverts}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <td th:text="${ads.firstName}"></td>
+                            <td th:text="${ads.lastName}"></td>
+                        </div>
+                        <div class="panel-body">
+                            <td th:text="${ads.description}"></td>
+                        </div>
+                        <div class="panel-body">
+                            <td th:text="${ads.comment}"></td>
+                        </div>
+                    </div><!--End panel panel-default-->
+                </div><!--End ofcol-md-8 col-md-offset-2-->
+            </div><!--End of row-->
+        </div><!--End of container-->
+</div>
+
 </body>
 </html>

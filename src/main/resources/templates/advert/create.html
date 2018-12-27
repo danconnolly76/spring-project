@@ -4,50 +4,51 @@
     <th:block th:include="includes/header :: headlinks"></th:block>
 </head>
 <body>
- <div th:include="includes/header :: head"></div>
- <div class="row">
-     <div class="col-md-8 col-md-offset-2">
-         <div class="page-header">
-             <h1>Create Page</h1>
-             <small>Enter in the correct details below</small>
-         </div><!--End of page-header -->
-     </div><!--End of col-md-8 col-md-offset-2-->
- </div><!--End of row-->
- <br>
- <div class="container">
-     <div class="row">
-         <div class="col-md-8 col-md-offset-2">
-             <br>
-          <form action="#" th:action="@{/advert/create}" th:object="${advert}" method="post">
-              <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Firstname" th:field="*{firstName}"/>
-              </div>
-               <br>
-              <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Lastname" th:field="*{lastName}"/>
-              </div>
-               <br>
-              <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Description" th:field="*{description}"/>
-              </div>
-               <br>
-              <div class="form-group">
-                  <textarea class="form-control" placeholder="Comment" th:field="*{comment}"/>
-              </div>
-              <br>
-              <p><input type="submit" class="btn btn-lg btn-primary btn-block" value="Create" /></p>
-          </form>
+<div th:include="includes/header :: head"></div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="page-header">
+            <h1>Create Page</h1>
+            <small>Enter in the correct details below</small>
+        </div><!--End of page-header -->
+    </div><!--End of col-md-8 col-md-offset-2-->
+</div><!--End of row-->
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <br>
+            <form action="#" th:action="@{/advert/create}" th:object="${advert}" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Firstname" th:field="*{firstName}"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Lastname" th:field="*{lastName}"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Description" th:field="*{description}"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Comment" th:field="*{comment}"/>
+                </div>
+                <br>
+                <p><input type="submit" class="btn btn-lg btn-primary btn-block" value="Create" /></p>
+            </form>
         </div><!--End of col-md-8 col-md-offset-2-->
-     </div><!--End of row-->
- </div><!--End of container-->
- <br>
-    <div class="container">
-      <div class="row">
+    </div><!--End of row-->
+</div><!--End of container-->
+<br>
+<div class="container">
+    <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <div th:if="${error!=null}"></div>
-          <h1><span th:text="${error}" /></h1>
+            <div th:if="${error!=null}"></div>
+            <h1><span th:text="${error}" /></h1>
         </div>
-       </div>
-    </div><!--End of container-->
+    </div>
+</div><!--End of container-->
+
 </body>
 </html>

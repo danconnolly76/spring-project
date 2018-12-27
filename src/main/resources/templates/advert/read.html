@@ -14,40 +14,40 @@
 </div><!--End of row-->
 
 
-   <div th:if="${adverts.isEmpty()}">
-       <div class="row">
-           <div class="col-md-8 col-md-offset-2">
-               <div class="page-header">
-                   <h3>There are currently no advert</h3>
-               </div><!--End of page-header -->
-           </div><!--End of col-md-8 col-md-offset-2-->
-       </div><!--End of row-->
-   </div>
+<div th:if="${adverts.isEmpty()}">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="page-header">
+                <h3>There are currently no advert</h3>
+            </div><!--End of page-header -->
+        </div><!--End of col-md-8 col-md-offset-2-->
+    </div><!--End of row-->
+</div>
 
 
-    <div th:if="${!adverts.isEmpty()}">
-      <tr th:each="advert : ${adverts}">
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-8 col-md-offset-2">
-                      <div class="panel panel-default">
-                          <div class="panel-heading">
-                              <td th:text="${advert.firstName}"></td>
-                              <td th:text="${advert.lastName}"></td>
-                          </div>
-                          <div class="panel-body">
-                           Description: <td th:text="${advert.description}"></td>
-                          </div>
-                          <div class="panel-body">
-                             <p>Comment:</p><td th:text="${advert.comment}"></td>
-                          </div>
+<div th:if="${!adverts.isEmpty()}">
+    <tr th:each="advert : ${adverts}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <td th:text="${advert.firstName}"></td>
+                            <td th:text="${advert.lastName}"></td>
+                        </div>
+                        <div class="panel-body">
+                            <td th:text="${advert.description}"></td>
+                        </div>
+                        <div class="panel-body">
+                            <td th:text="${advert.comment}"></td>
+                        </div>
                         <td><a href="#" th:href="@{/advert/update/}+${advert.id}" class="btn btn-info">Update</a></td>
                         <td><a href="#" th:href="@{/advert/delete/}+${advert.id}" class="btn btn-warning">Delete</a></td>
-                  </div><!--End panel panel-default-->
-              </div><!--End ofcol-md-8 col-md-offset-2-->
-           </div><!--End of row-->
+                    </div><!--End panel panel-default-->
+                </div><!--End ofcol-md-8 col-md-offset-2-->
+            </div><!--End of row-->
         </div><!--End of container-->
-        </div>
+</div>
 
- </body>
+</body>
 </html>
