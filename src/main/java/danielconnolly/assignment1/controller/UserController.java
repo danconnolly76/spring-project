@@ -139,12 +139,4 @@ public class UserController {
         return LOGINPAGE;
     }
 
-    //Needs removing before deadline
-    @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET)
-    public String deleteUser(@PathVariable User user)
-    {
-        userService.delete(user);
-        return INDEXPAGEREDIRECT;
-    }
-
 }
