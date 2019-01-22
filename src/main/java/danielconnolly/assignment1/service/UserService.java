@@ -28,11 +28,6 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    //public void delete(User user){
-
-    //userRepository.delete(user);
-    //}
-
     public boolean validateUser(LoginUser user){
 
         List<User> u = userRepository.findByFNameAndPassword(user.getUsername(), user.getPassword());
