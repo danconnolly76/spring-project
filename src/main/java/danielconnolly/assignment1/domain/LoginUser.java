@@ -2,6 +2,11 @@ package danielconnolly.assignment1.domain;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * Created by Daniel Connolly U1457227
+ * This is model class is for users to be stored in a database
+ */
+
 public class LoginUser {
 
     @NotEmpty

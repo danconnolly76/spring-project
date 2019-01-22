@@ -4,6 +4,11 @@ package danielconnolly.assignment1.domain;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+/**
+ * Created by Daniel Connolly U1457227
+ * This is model class is for adverts to be stored in a database
+ */
+
 
 @Entity
 @Table(name = "ads")

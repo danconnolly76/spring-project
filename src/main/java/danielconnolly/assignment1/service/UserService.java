@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Created by Daniel Connolly U1457227
+ *
+ * A service class to perform crud operations and a search method
+ */
+
 @Service
 public class UserService {
 
@@ -22,9 +28,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void delete(User user){
-        userRepository.delete(user);
-    }
+    //public void delete(User user){
+
+    //userRepository.delete(user);
+    //}
 
     public boolean validateUser(LoginUser user){
 
